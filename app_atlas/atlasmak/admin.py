@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from django.utils.safestring import mark_safe
 
-from .models import News
+from .models import *
 
 
 #  list_display = ('news_title')
@@ -21,4 +21,7 @@ from .models import News
 
 # phone.png
 admin.site.register(News)
-
+admin.site.register(Company)
+admin.site.register(Certificate)
+admin.site.register(Catalog)
+admin.site.register(Delivery)

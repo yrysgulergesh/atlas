@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ImageField
 
 
 class News(models.Model):
@@ -18,3 +19,58 @@ class News(models.Model):
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
+
+
+class Company(models.Model):
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+    class Meta:
+        verbose_name ='О компании'
+        ordering = ['title']
+
+
+
+class Certificate(models.Model):
+    photo = models.ImageField(upload_to = "atlasmak", null=True, blank=True)
+
+
+class Meta:
+        verbose_name ='Сертификаты качества'
+        ordering = ['photo']
+
+
+class Catalog(models.Model):
+    image = models.ImageField(upload_to = "atlasmak", null=True, blank=True)
+    number = models.CharField(max_length=20)
+    title = models.CharField(max_length=225)
+    description = models.TextField()
+    specifications = models.CharField(max_length=225)
+    price = models.CharField(max_length=225)
+
+
+    def __str__(self):
+        return self.title
+
+
+    class Meta:
+        verbose_name ='Каталог'
+        ordering = ['title']
+
+
+
+class Delivery(models.Model):
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+    class Meta:
+        verbose_name ='Доставка'
+        ordering = ['title']
