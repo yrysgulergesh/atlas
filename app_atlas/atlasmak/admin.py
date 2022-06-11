@@ -1,15 +1,17 @@
 from django.contrib import admin
+from .models import Product
+from . import models
 
-from django.utils.safestring import mark_safe
+# Register your models here.
 
 from .models import *
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['category', 'brand', 'title', 'slug', 'description', 'image', 'price', 'available']
+    list_filter = ['category']
+    list_editable = ['price', 'available']
+    # prepopulated_fields = {'slug': ('name',)}
 
-#  list_display = ('news_title')
-#     list_display_links = ('news_title',)
-#     list_editable = ('')
-#     fields = ('')
-#     readonly_fields = ('news_img',)
 
 #     def get_img(self, obj):
 #         if obj.cms_img:
@@ -25,3 +27,8 @@ admin.site.register(Company)
 admin.site.register(Certificate)
 admin.site.register(Catalog)
 admin.site.register(Delivery)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category)
+admin.site.register(Brand)
+admin.site.register(News)
+
