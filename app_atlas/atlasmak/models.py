@@ -39,7 +39,7 @@ class Certificate(models.Model):
     photo = models.ImageField(upload_to = "atlasmak", null=True, blank=True)
 
 
-class Meta:
+    class Meta:
         verbose_name ='Сертификаты качества'
         ordering = ['photo']
 
