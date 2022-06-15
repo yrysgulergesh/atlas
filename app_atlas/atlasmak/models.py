@@ -52,6 +52,7 @@ class Company(models.Model):
 
     class Meta:
         verbose_name ='О компании'
+        verbose_name_plural = 'О компании'
         ordering = ['title']
 
 
@@ -62,6 +63,7 @@ class Certificate(models.Model):
 
     class Meta:
         verbose_name ='Сертификаты качества'
+        verbose_name_plural = 'Сертификаты качества'
         ordering = ['photo']
 
 
@@ -80,6 +82,7 @@ class Catalog(models.Model):
 
     class Meta:
         verbose_name ='Каталог'
+        verbose_name_plural = 'Каталоги'
         ordering = ['title']
 
 
@@ -94,4 +97,5 @@ class Delivery(models.Model):
 
     class Meta:
         verbose_name ='Доставка'
+        verbose_name_plural = 'Доставки'
         ordering = ['title']
