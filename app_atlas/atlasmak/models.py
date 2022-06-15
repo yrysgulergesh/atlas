@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -99,3 +101,25 @@ class Delivery(models.Model):
         verbose_name ='Доставка'
         verbose_name_plural = 'Доставки'
         ordering = ['title']
+
+
+
+
+# Всего посещений сайта
+class VisitNumber(models.Model):
+    count=models.IntegerField(verbose_name='Всего посещений сайта',default=0) # Всего посещений сайта
+    class Meta:
+        verbose_name = 'Всего посещений сайта'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return str(self.count)
+
+# Статистика посещений за один день
+class DayNumber(models.Model):
+    day=models.DateField(verbose_name='свидание',default=timezone.now)
+    count=models.IntegerField(verbose_name='Количество посещений сайта',default=0) # Всего посещений сайта
+    class Meta:
+        verbose_name = 'Статистика ежедневных посещений сайта'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return str(self.day)
