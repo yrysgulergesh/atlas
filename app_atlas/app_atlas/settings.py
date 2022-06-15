@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'amplitude',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,13 +50,9 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'amplitude.middleware.SessionInfo',
-    'amplitude.middleware.SendPageViewEvent' , 
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ]
 
-AMPLITUDE_API_KEY  =  '<amplitude-project-api-key>'
 
 ROOT_URLCONF = 'app_atlas.urls'
 
@@ -91,11 +87,11 @@ WSGI_APPLICATION = 'app_atlas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'atlas',
-        'USER': 'atlasuser',
+        'NAME': 'atlasshop',
+        'USER': 'atlasshopuser',
         'PASSWORD': 'password',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
