@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'amplitude',
+
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'amplitude.middleware.SessionInfo',
+    'amplitude.middleware.SendPageViewEvent',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -149,3 +153,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Settings > Projects > <Your project> > General > API Key
+AMPLITUDE_API_KEY = '<amplitude-project-api-key>'
+
+# You can also choose if you want to include user and group data (Default False)
+AMPLITUDE_INCLUDE_USER_DATA = False
+AMPLITUDE_INCLUDE_GROUP_DATA = False

@@ -1,12 +1,13 @@
-import email
-from enum import unique
-from tabnanny import verbose
-import uuid
+
 from django.db import models
 from django.forms import ImageField
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from amplitude import Amplitude
+
+
+
 
 # class Category(models.Model):
 #     name = models.CharField(max_length=200, db_index=True)
