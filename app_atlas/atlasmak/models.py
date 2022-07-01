@@ -7,6 +7,13 @@ from django.utils import timezone
 from amplitude import Amplitude
 
 
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
+
+from hitcount.views import HitCountDetailView
+
+
+
 
 
 # class Category(models.Model):
