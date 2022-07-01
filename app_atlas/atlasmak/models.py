@@ -1,9 +1,12 @@
+import email
+from enum import unique
+from tabnanny import verbose
+import uuid
 from django.db import models
 from django.forms import ImageField
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils import timezone
-
 
 # class Category(models.Model):
 #     name = models.CharField(max_length=200, db_index=True)
@@ -103,7 +106,14 @@ class Delivery(models.Model):
         verbose_name_plural = 'Доставки'
         ordering = ['title']
 
+class Contact(models.Model):
+    phone = models.CharField(max_length=25)
+    email = models.EmailField()
+    created_on = models.DateField(auto_now_add=True)
+    url = models.URLField(blank=True)
 
+    class Meta:
+        verbose_name_plural = 'Контакты'
 
 
 # Всего посещений сайта
