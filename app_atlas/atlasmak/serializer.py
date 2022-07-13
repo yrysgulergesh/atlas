@@ -20,6 +20,12 @@ class CatalogSerializer(serializers.ModelSerializer):
         fields = '__all__'  
 
 
+class SpecificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Specification
+        fields = '__all__'  
+
+
 class DeliverySerializer(serializers.ModelSerializer):
     class Meta:
         model = Delivery

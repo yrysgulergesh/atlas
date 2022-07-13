@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .models import *
 
-from .serializer import CompanySerializer, CatalogSerializer, DeliverySerializer
+from .serializer import CompanySerializer, CatalogSerializer, DeliverySerializer, SpecificationSerializer
 
 
 class CompanyListAPIView(APIView):
@@ -22,11 +22,11 @@ class CompanyListAPIView(APIView):
 #         return Response(data=certificate_json.data)
 
 
-# class CatalogListAPIView(APIView):
-#     def get(self, request, *args, **kwargs):
-#         catalog = Catalog.objects.all()
-#         catalog_json = CatalogSerializer(catalog, many=True)
-#         return Response(data=catalog_json.data)
+class SpecificationListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        specification = Specification.objects.all()
+        specification_json = SpecificationSerializer(specification, many=True)
+        return Response(data=specification_json.data)
 
 
 class DeliveryListAPIView(APIView):

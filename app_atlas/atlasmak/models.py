@@ -75,7 +75,7 @@ class Catalog(models.Model):
     number = models.CharField(max_length=20)
     title = models.CharField(max_length=225)
     description = models.TextField()
-    specifications = models.CharField(max_length=225)
+    # specifications = models.CharField(max_length=225)
     price = models.CharField(max_length=225)
 
 
@@ -86,6 +86,23 @@ class Catalog(models.Model):
     class Meta:
         verbose_name ='Каталог'
         verbose_name_plural = 'Каталоги'
+        ordering = ['title']
+
+
+class Specification(models.Model):
+    catalog = models.ForeignKey(
+        to=Catalog, on_delete=models.SET_NULL,
+        null=True, blank=True
+    )
+    title = models.CharField(max_length=225)
+    number = models.CharField(max_length=225)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name ='Техническая характеристика'
+        verbose_name_plural = 'Технические характеристики'
         ordering = ['title']
 
 
