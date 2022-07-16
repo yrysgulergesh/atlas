@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'amplitude',
     'hitcount',
+    'corsheaders',
 
 ]
 
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware', 
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 
@@ -80,8 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app_atlas.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
 
 # DATABASES = {
 #     'default': {
@@ -102,6 +103,12 @@ DATABASES = {
     }
 }
 
+
+
+# White listing the localhost:3000 port
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -145,9 +152,9 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "app_atlas/static/"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
