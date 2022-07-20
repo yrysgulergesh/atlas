@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
-router.register('tovar', TovarViews)
+router.register('catalog', CatalogViews)
 
 
 urlpatterns = [
@@ -15,6 +15,6 @@ urlpatterns = [
     # path('certificate/', CertificateListAPIView.as_view(), name='certificate-list'),
     path('catalog/', CatalogListAPIView.as_view(), name='catalog-list'),
     path('delivery/', DeliveryListAPIView.as_view(), name='delivery-list'),
-    # path('visit/', VisitNumberListAPIView.as_view(), name='visit-list'),
+    path('contacts/', ContactsListAPIView.as_view(), name='contact-list'),
     # path('day_number/', DayNumberListAPIView.as_view(), name='day_number-list'),
 ]

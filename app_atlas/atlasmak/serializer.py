@@ -32,6 +32,14 @@ class DeliverySerializer(serializers.ModelSerializer):
         fields = '__all__'  
 
 
+class ContactsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contacts
+        fields = '__all__' 
+
+
+
+
 # class VisitNumberSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = VisitNumber

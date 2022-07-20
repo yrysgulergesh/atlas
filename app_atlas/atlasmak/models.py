@@ -163,6 +163,8 @@ class Contacts(models.Model):
         verbose_name = "Контакты"
         verbose_name_plural = "Контакты"
 
+    def __str__(self):
+        return self.title
 
 # Всего посещений сайта
 # class VisitNumber(models.Model):

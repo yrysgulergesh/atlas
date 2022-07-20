@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .models import *
 
-from .serializer import CompanySerializer, CatalogSerializer, DeliverySerializer
+from .serializer import CompanySerializer, CatalogSerializer, DeliverySerializer, ContactsSerializer
 
 
 class CompanyListAPIView(APIView):
@@ -48,8 +48,12 @@ class DeliveryListAPIView(APIView):
 #         day_number = DayNumber.objects.all()
 #         day_number_json = DayNumberSerializer(day_number, many=True)
 #         return Response(data=day_number_json.data) 
+class ContactsListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        contacts = Contacts.objects.all()
+        contacts_json = ContactsSerializer(contacts, many=True)
+        return Response(data= contacts_json.data)
 
-
-class TovarViews(ModelViewSet):
+class CatalogViews(ModelViewSet):
     queryset = Catalog.objects.all()
     serializer_class = CatalogSerializer
