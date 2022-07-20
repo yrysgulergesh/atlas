@@ -22,11 +22,11 @@ class CompanyListAPIView(APIView):
 #         return Response(data=certificate_json.data)
 
 
-# class CatalogListAPIView(APIView):
-#     def get(self, request, *args, **kwargs):
-#         catalog = Catalog.objects.all()
-#         catalog_json = CatalogSerializer(catalog, many=True)
-#         return Response(data=catalog_json.data)
+class CatalogListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        catalog = Catalog.objects.all()
+        catalog_json = CatalogSerializer(catalog, many=True)
+        return Response(data=catalog_json.data)
 
 
 class DeliveryListAPIView(APIView):

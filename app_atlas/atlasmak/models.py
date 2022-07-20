@@ -1,12 +1,9 @@
-# from enum import Enum, Flag
-from unicodedata import name
 from amplitude import Amplitude
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import CharField, ImageField
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from hitcount.models import HitCount
 from hitcount.views import HitCountDetailView, HitCountMixin
@@ -71,58 +68,8 @@ from hitcount.views import HitCountDetailView, HitCountMixin
 #     def __str__(self):
 #         return f"{self.name} ({self.parent})"
 
-class Company(models.Model):
-    title = models.CharField(max_length=255)
-    text = models.TextField()
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "О компании"
-        verbose_name_plural = "О компании"
-        ordering = ["title"]
-
-
-# class Certificate(models.Model):
-#     photo = models.ImageField(upload_to = "atlasmak", null=True, blank=True)
-
-
-#     class Meta:
-#         verbose_name ='Сертификаты качества'
-#         verbose_name_plural = 'Сертификаты качества'
-#         ordering = ['photo']
-
 
 class Catalog(models.Model):
-
-
-    PARAMETER_CHOICES = [
-        ("1", "Стандартное напряжение"),
-        ("2", "Частота"),
-        ("3", "Суммарная мощность"),
-        ("4", "Давление воздуха"),
-        ("5", "Потребление воздуха"),
-        ("6", "Ширина машины"),
-        ("7", "Длина машины "),
-        ("8", "Высота машины"),
-        ("9", "Вес машины"),
-    ]
-
-
-    VALUE_CHOICES = [
-        ("1", "380 V"),
-        ("2", "50 Hz"),
-        ("3", "1.1 Kw"),
-        ("4", "6 bar"),
-        ("5", "6 It/min"),
-        ("6", "660 mm"),
-        ("7", "800 mm"),
-        ("8", "1270 mm"),
-        ("9", "150 kg")
-    ]
-
-   
 
     # catalog = models.ForeignKey(on_delete=models.CASCADE, null=True,  blank=True)
     # title = models.ForeignKey(on_delete=models.CASCADE, null=True,  blank=True)
@@ -134,29 +81,6 @@ class Catalog(models.Model):
     title = models.CharField(max_length=225)
     description = models.TextField()
     price = models.CharField(max_length=225)
-    parameter = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=1)
-    parameter1 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=2)
-    parameter2 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=3)
-    parameter3 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=4)
-    parameter4 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=5)
-    parameter5 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=6)
-    parameter6 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=7)
-    parameter7 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=8)
-    parameter9 = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default=9)
-
-    
-    value = models.CharField(max_length=20, choices=VALUE_CHOICES, default=1)
-    value1 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=2)
-    value2 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=3)
-    value3 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=4)
-    value4 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=5)
-    value5 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=6)
-    value6 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=7)
-    value7 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=8)
-    value8 = models.CharField(max_length=20, choices=VALUE_CHOICES, default=9)
-        
-
-        
 
     # slug = models.SlugField(default='', null=False, db_index=True)
     # created_at = models.DateTimeField(auto_now=True)
@@ -169,36 +93,58 @@ class Catalog(models.Model):
         return f"{self.title} ({self.price})"
 
 
-
 class Parameter(models.Model):
     # #name_parameter = models.CharField(max_length=150)
     # parameter = models.CharField(max_length=20, choices=PARAMETER_CHOICES, default="1")
     # catalog = models.ForeignKey(Catalog, on_delete=models.CASCADE, null=True,  blank=True)
     name = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
+    catalog = models.ForeignKey(Catalog, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Технические характеристики"
         verbose_name_plural = "Технические характеристики"
 
-    # def __str__(self):
-    #     return f"{self.name} ({self.value self.category})"
-
     def __str__(self):
         return f"{self.name} ({self.value})"
+
+
+class Company(models.Model):
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+
+    class Meta:
+        verbose_name = "О компании"
+        verbose_name_plural = "О компании"
+        ordering = ["title"]
+
+
+def __str__(self):
+    return self.title
+
+
+# class Certificate(models.Model):
+#     photo = models.ImageField(upload_to = "atlasmak", null=True, blank=True)
+
+
+#     class Meta:
+#         verbose_name ='Сертификаты качества'
+#         verbose_name_plural = 'Сертификаты качества'
+#         ordering = ['photo']
 
 
 class Delivery(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = "Доставка"
         verbose_name_plural = "Доставки"
         ordering = ["title"]
+
+
+def __str__(self):
+    return self.title
 
 
 class Contacts(models.Model):

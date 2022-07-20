@@ -13,12 +13,18 @@ class CompanySerializer(serializers.ModelSerializer):
 #         model = Certificate
 #         fields = '__all__'       
 
-
-class CatalogSerializer(serializers.ModelSerializer):
+class ParameterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Catalog
+        model = Parameter
         fields = '__all__'  
 
+
+class CatalogSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        
+        model = Catalog
+        fields = '__all__'
 
 class DeliverySerializer(serializers.ModelSerializer):
     class Meta:
