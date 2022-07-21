@@ -13,6 +13,8 @@ admin.site.register(Contacts)
 # admin.site.register(DayNumber)
 
 
+
+
 class ParameterAdmin(admin.StackedInline):
     model = Parameter
 
@@ -22,5 +24,7 @@ class CatalogAdmin(admin.ModelAdmin):
         ParameterAdmin,
     ]
 
+
+list_display = ("image", "number", "title", "description", "price")
 
 admin.site.register(Catalog, CatalogAdmin)

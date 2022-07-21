@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .models import *
 
-from .serializer import CompanySerializer, CatalogSerializer, DeliverySerializer, ContactsSerializer
+from .serializer import CompanySerializer, CatalogSerializer, ParameterSerializer, DeliverySerializer, ContactsSerializer
 
 
 class CompanyListAPIView(APIView):
@@ -28,6 +28,13 @@ class CatalogListAPIView(APIView):
         catalog_json = CatalogSerializer(catalog, many=True)
         return Response(data=catalog_json.data)
 
+class ParameterListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        parameter = Parameter.objects.all()
+        parameter_json = ParameterSerializer(parameter, many=True)
+        return Response(data=parameter_json.data) 
+
+
 
 class DeliveryListAPIView(APIView):
     def get(self, request, *args, **kwargs):
@@ -43,11 +50,6 @@ class DeliveryListAPIView(APIView):
 #         return Response(data=visit_number_json.data) 
 
 
-# class DayNumberListAPIView(APIView):
-#     def get(self, request, *args, **kwargs):
-#         day_number = DayNumber.objects.all()
-#         day_number_json = DayNumberSerializer(day_number, many=True)
-#         return Response(data=day_number_json.data) 
 class ContactsListAPIView(APIView):
     def get(self, request, *args, **kwargs):
         contacts = Contacts.objects.all()
@@ -57,3 +59,11 @@ class ContactsListAPIView(APIView):
 class CatalogViews(ModelViewSet):
     queryset = Catalog.objects.all()
     serializer_class = CatalogSerializer
+
+
+
+# class AtlasCountHitDetailView(CatalogMixinDetailView, HitCountDetailView):
+#     """
+#     Generic hitcount class based view that will also perform the hitcount logic.
+#     """
+#     count_hit = True

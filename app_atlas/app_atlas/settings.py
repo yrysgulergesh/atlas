@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import sys
+
+# Used to
+sys.path.insert(0, '../../django-hitcount')  # our hitcount app
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 from pathlib import Path
 
@@ -43,6 +49,7 @@ INSTALLED_APPS = [
     'amplitude',
     'hitcount',
     'corsheaders',
+    # 'django_admin_search',
 
 ]
 
@@ -84,24 +91,24 @@ WSGI_APPLICATION = 'app_atlas.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'atlas_db',
-#         'USER': 'atlas_dbuser',
-#         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'atlas',
+        'USER': 'atlas8user',
+        'PASSWORD': 'password8',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 
 
@@ -167,5 +174,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AMPLITUDE_API_KEY = '<amplitude-project-api-key>'
 
 # You can also choose if you want to include user and group data (Default False)
-AMPLITUDE_INCLUDE_USER_DATA = False
-AMPLITUDE_INCLUDE_GROUP_DATA = False
+AMPLITUDE_INCLUDE_USER_DATA = True
+AMPLITUDE_INCLUDE_GROUP_DATA = True
+
+
+HITCOUNT_KEEP_HIT_ACTIVE = {'minutes': 60}
+HITCOUNT_HITS_PER_IP_LIMIT = 0  # unlimited
+HITCOUNT_EXCLUDE_USER_GROUP = ()  # not used
+HITCOUNT_KEEP_HIT_IN_DATABASE = {'seconds': 10}

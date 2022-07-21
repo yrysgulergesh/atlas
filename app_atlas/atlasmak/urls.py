@@ -14,7 +14,7 @@ urlpatterns = [
     path('company/', CompanyListAPIView.as_view(), name='company-list'),
     # path('certificate/', CertificateListAPIView.as_view(), name='certificate-list'),
     path('catalog/', CatalogListAPIView.as_view(), name='catalog-list'),
+    path('parameter/', ParameterListAPIView.as_view(), name='parameter-list'),
     path('delivery/', DeliveryListAPIView.as_view(), name='delivery-list'),
     path('contacts/', ContactsListAPIView.as_view(), name='contact-list'),
-    # path('day_number/', DayNumberListAPIView.as_view(), name='day_number-list'),
 ]
